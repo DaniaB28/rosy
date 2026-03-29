@@ -942,7 +942,7 @@
         <span style="margin-left:1.5rem;color:rgba(255,255,255,0.5);font-size:0.85rem;" id="game-timer">⏱️ 30s</span>
       </div>
 
-      <canvas id="game-canvas" width="380" height="450"></canvas>
+      <canvas id="game-canvas" height="450"></canvas>
 
       <div style="text-align:center;margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
         <button class="game-btn" id="start-btn" onclick="startGame()">🎮 Empezar Juego</button>
@@ -1376,8 +1376,10 @@
     // ========================
     function resizeGameCanvas() {
       const maxW = Math.min(380, window.innerWidth - 32);
+      gc.width = maxW;               // cambia resolución interna real
+      gc.height = Math.round(maxW / 380 * 450);
       gc.style.width = maxW + 'px';
-      gc.style.height = (maxW / 380 * 450) + 'px';
+      gc.style.height = gc.height + 'px';
     }
     resizeGameCanvas();
     window.addEventListener('resize', resizeGameCanvas);
